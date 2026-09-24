@@ -16,10 +16,6 @@ export const metadata: Metadata = {
     description: "Clear glass. Better light. Professional window cleaning throughout Upper Manhattan.",
     images: ["/og.png"],
   },
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-  },
 };
 
 export default function RootLayout({
