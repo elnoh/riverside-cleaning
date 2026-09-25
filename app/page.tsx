@@ -41,13 +41,13 @@ const trustPoints = [
     number: "02",
     title: "Clear, reliable timing",
     description:
-      "Two-hour arrival windows, text updates and service planned around your day.",
+      "Access, arrival window and the service plan are clarified before an appointment.",
   },
   {
     number: "03",
-    title: "The view is guaranteed",
+    title: "A clear finish",
     description:
-      "If a streak or spot was missed, we return and make it right. No runaround.",
+      "Glass, edges and surrounding surfaces receive attention appropriate to the job.",
   },
 ];
 
@@ -61,11 +61,20 @@ const neighborhoods = [
 ];
 
 export default function Home() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<{
+    propertyType: string;
+    neighborhood: string;
+    details: string;
+  } | null>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const values = new FormData(event.currentTarget);
+    setSubmitted({
+      propertyType: String(values.get("propertyType") || ""),
+      neighborhood: String(values.get("neighborhood") || ""),
+      details: String(values.get("details") || ""),
+    });
   }
 
   return (
@@ -92,13 +101,9 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button" href="#quote">Request a free quote <span>↗</span></a>
-            <a className="text-link" href="tel:+12125550148">(212) 555-0148</a>
+            <a className="text-link" href="#services">Explore services</a>
           </div>
-          <div className="hero-proof">
-            <strong>4.9</strong>
-            <span className="stars" aria-label="4.9 out of 5 stars">★★★★★</span>
-            <span>Trusted by 500+ local clients</span>
-          </div>
+          <div className="hero-proof"><span>Residential · Storefront · Office</span></div>
         </div>
 
         <div className="hero-visual">
@@ -115,17 +120,13 @@ export default function Home() {
             <span>Professional equipment</span>
             <strong>Cleaner glass. More natural light.</strong>
           </div>
-          <div className="experience-badge">
-            <strong>10+</strong>
-            <span>Years of<br />clear views</span>
-          </div>
         </div>
       </section>
 
       <div className="hero-strip" aria-label="Highlights">
-        <span>Fully insured</span>
-        <span>Pure-water system</span>
-        <span>Satisfaction guaranteed</span>
+        <span>Interior &amp; exterior glass</span>
+        <span>Careful surface prep</span>
+        <span>Service by appointment</span>
       </div>
 
       <section className="section services" id="services">
@@ -156,7 +157,7 @@ export default function Home() {
           ))}
         </div>
         <div className="pricing-note">
-          <p>Every property is different. Send a few details and we&apos;ll confirm a clear, written quote before scheduling.</p>
+          <p>Illustrative starting prices for this portfolio concept. A real project would confirm scope and rates before launch.</p>
           <a href="#quote">Get your quote <span>↗</span></a>
         </div>
       </section>
@@ -166,7 +167,7 @@ export default function Home() {
           <Image
             className="results-image"
             src="/images/window-before-after.png"
-            alt="The same brownstone window before cleaning on the left and after cleaning on the right"
+            alt="Illustrative comparison of a window before and after cleaning"
             fill
             sizes="(max-width: 900px) 100vw, 58vw"
           />
@@ -180,10 +181,7 @@ export default function Home() {
           <p>
             We remove the residue that dulls your glass—dust, fingerprints, hard-water spots and city buildup—then detail the edges for a finish that holds up in direct light.
           </p>
-          <blockquote>
-            “The rooms genuinely feel brighter. They were punctual, careful and left every sill spotless.”
-            <cite>— Maya R., Hamilton Heights</cite>
-          </blockquote>
+          <p className="example-note">Illustrative before-and-after image for this portfolio concept.</p>
         </div>
       </section>
 
@@ -228,40 +226,25 @@ export default function Home() {
           <p className="eyebrow"><span /> Request a quote</p>
           <h2>Let the light<br /><em>back in.</em></h2>
           <p>
-            Tell us about your windows. We&apos;ll follow up within one business day with a clear estimate and available times.
+            Describe the property and see what a quote request would contain. This portfolio form does not send a message or book an appointment.
           </p>
-          <div className="contact-details">
-            <a href="tel:+12125550148">(212) 555-0148</a>
-            <a href="mailto:hello@riversidewindows.co">hello@riversidewindows.co</a>
-            <span>Mon–Sat · 8:00 AM–6:00 PM</span>
-          </div>
+          <div className="contact-details"><span>Portfolio demonstration · No live bookings</span></div>
         </div>
 
         <div className="form-card">
           {submitted ? (
             <div className="success-message" role="status" aria-live="polite">
               <span aria-hidden="true">✓</span>
-              <p className="eyebrow">Request received</p>
-              <h3>Thanks—we&apos;ll be in touch.</h3>
-              <p>Expect a call or email within one business day to confirm the details of your quote.</p>
-              <button type="button" onClick={() => setSubmitted(false)}>Send another request</button>
+              <p className="eyebrow">Request preview</p>
+              <h3>Here&apos;s what you selected.</h3>
+              <p><strong>Property:</strong> {submitted.propertyType}</p>
+              <p><strong>Neighborhood:</strong> {submitted.neighborhood}</p>
+              <p><strong>Job details:</strong> {submitted.details}</p>
+              <p>Demo only. Nothing was sent or saved.</p>
+              <button type="button" onClick={() => setSubmitted(null)}>Reset demo</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
-              <div className="field-row">
-                <label>
-                  Name
-                  <input type="text" name="name" placeholder="Your full name" autoComplete="name" required />
-                </label>
-                <label>
-                  Phone
-                  <input type="tel" name="phone" placeholder="(212) 555-0123" autoComplete="tel" required />
-                </label>
-              </div>
-              <label>
-                Email
-                <input type="email" name="email" placeholder="you@email.com" autoComplete="email" required />
-              </label>
               <div className="field-row">
                 <label>
                   Property type
@@ -282,11 +265,20 @@ export default function Home() {
                 Tell us about the job
                 <textarea name="details" rows={4} placeholder="Approximate number of windows, interior/exterior, access notes…" required />
               </label>
-              <button className="button form-submit" type="submit">Request my quote <span>↗</span></button>
-              <p className="form-note">No obligation. Your details stay private.</p>
+              <button className="button form-submit" type="submit">Preview request <span>↗</span></button>
+              <p className="form-note">This interactive demo keeps your entries in the browser. Nothing is sent or saved.</p>
             </form>
           )}
         </div>
+      </section>
+
+      <section className="agency-demo-cta">
+        <div>
+          <p className="eyebrow eyebrow-light"><span /> A website concept by AdamRemix</p>
+          <h2>Put your business in motion.</h2>
+          <p>Want a site like this for your agency or client? Tell us what the business needs to do better.</p>
+        </div>
+        <a className="button button-lime" href="https://adamremix.com/contact">Discuss a Project <span>↗</span></a>
       </section>
 
       <footer>
