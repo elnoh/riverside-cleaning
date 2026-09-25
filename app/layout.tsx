@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://riversidecleaning.adamremix.com"),
   title: "Riverside Window Cleaning | Upper Manhattan",
   description: "Professional residential, storefront and office window cleaning throughout Upper Manhattan.",
   openGraph: {
