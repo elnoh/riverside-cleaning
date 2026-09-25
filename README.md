@@ -36,4 +36,4 @@ npm run start
 - `public/images/window-before-after.png` — before/after proof photograph
 - `public/og.png` — social sharing card
 
-The quote form is a front-end portfolio interaction: it validates required fields and shows a confirmation state. Connect `handleSubmit` in `app/page.tsx` to the chosen email, CRM or form endpoint when preparing a production client deployment.
+The quote form is a front-end portfolio interaction: it validates required fields and previews the request without transmitting personal information. Connect `handleSubmit` in `app/page.tsx` to an approved email, CRM or form endpoint when preparing a production client deployment.
