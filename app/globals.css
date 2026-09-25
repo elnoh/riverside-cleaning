@@ -228,6 +228,12 @@ h1 em, h2 em { color: #4d685e; font-weight: 400; }
 .success-message > p:not(.eyebrow) { max-width: 460px; margin: 1.5rem 0; color: #53665f; line-height: 1.7; }
 .success-message button { border: 0; border-bottom: 1px solid var(--ink); padding: 0 0 .25rem; background: transparent; color: var(--ink); cursor: pointer; font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 
+.agency-demo-cta { display: flex; align-items: center; justify-content: space-between; gap: 3rem; padding: clamp(4rem, 7vw, 7rem) clamp(1.25rem, 7vw, 8rem); background: #284b3f; color: white; }
+.agency-demo-cta h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(2.6rem, 5vw, 5.5rem); font-weight: 400; line-height: 1; letter-spacing: -.05em; }
+.agency-demo-cta p:not(.eyebrow) { max-width: 540px; margin: 1.5rem 0 0; color: #c6d8cd; font-size: 1rem; line-height: 1.7; }
+.agency-demo-cta > a { flex-shrink: 0; }
+@media (max-width: 700px) { .agency-demo-cta { flex-direction: column; align-items: flex-start; } }
+
 footer { display: grid; grid-template-columns: 1.1fr 1fr 1fr auto; gap: 2rem; align-items: end; padding: 3rem clamp(1.25rem, 5vw, 5rem); background: var(--ink); color: white; }
 .footer-brand .brand-mark { background: var(--lime); color: var(--ink); }
 footer > p { margin: 0; color: #aebfb7; font-family: Georgia, serif; font-size: 1rem; }
@@ -371,4 +377,3 @@ footer > span { color: #84968d; font-size: .6rem; text-align: right; }
 header .button-small {
   font-size: .875rem;
 }
-
