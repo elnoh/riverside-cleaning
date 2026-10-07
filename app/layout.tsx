@@ -1,3 +1,4 @@
+import DemoAttribution from "./DemoAttribution";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -25,7 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><DemoAttribution />{children}</body>
     </html>
   );
 }
+
