@@ -92,6 +92,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button:hover { transform: translateY(-2px); background: #1c3a31; }
 .button span { color: var(--lime); font-size: 1.1rem; }
 .button-small { justify-self: end; min-height: 44px; padding-inline: 1rem; gap: .9rem; font-size: .68rem; }
+.nav-menu-button, .mobile-navigation { display: none; }
 
 .hero {
   min-height: calc(100vh - 132px);
@@ -255,8 +256,45 @@ footer > span { color: #84968d; font-size: .6rem; text-align: right; }
 }
 
 @media (max-width: 900px) {
-  .site-nav { grid-template-columns: 1fr auto; }
+  .site-nav { position: relative; grid-template-columns: 1fr auto auto; }
   .nav-links { display: none; }
+  .nav-menu-button {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-content: center;
+    gap: 6px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .nav-menu-button span { width: 22px; height: 2px; display: block; background: currentColor; transition: transform .2s ease, opacity .2s ease; }
+  .nav-menu-button.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-menu-button.is-open span:nth-child(2) { opacity: 0; }
+  .nav-menu-button.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .mobile-navigation {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 30;
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    visibility: hidden;
+    background: rgba(244,242,233,.98);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 40px rgba(16,39,32,.16);
+    opacity: 0;
+    transition: max-height .25s ease, opacity .2s ease, visibility .2s;
+  }
+  .mobile-navigation.is-open { max-height: 420px; visibility: visible; opacity: 1; }
+  .mobile-navigation-links { display: grid; padding: 14px clamp(1.25rem, 4vw, 4.5rem) 18px; }
+  .mobile-navigation-links > a { min-height: 56px; display: flex; align-items: center; border-bottom: 1px solid var(--line); font-size: 18px; font-weight: 800; }
+  .mobile-navigation-cta { margin-top: 12px; padding: 0 18px; justify-content: space-between; border: 0 !important; border-radius: 3px; background: var(--ink); color: white; }
+  body.navigation-open { overflow: hidden; }
   .hero { grid-template-columns: 1fr; }
   .hero-copy { padding-right: 0; }
   .hero-visual { min-height: 590px; }
@@ -275,7 +313,7 @@ footer > span { color: #84968d; font-size: .6rem; text-align: right; }
 
 @media (max-width: 620px) {
   body { padding-bottom: 64px; }
-  .site-nav { min-height: 74px; }
+  .site-nav { min-height: 82px; grid-template-columns: 1fr auto; gap: 1rem; }
   .button-small { display: none; }
   .hero { min-height: auto; padding-top: .8rem; }
   .hero-copy { padding-block: 3.5rem; }
@@ -376,4 +414,46 @@ footer > span { color: #84968d; font-size: .6rem; text-align: right; }
 /* Header quote button remains compact but readable */
 header .button-small {
   font-size: .875rem;
+}
+
+@media (max-width: 800px) {
+  :where(p, li, a, button, label, input, select, textarea, small, figcaption) { font-size: max(18px, 1em); }
+  .brand > span { font-size: 18px; }
+  .service-meta span { font-size: 18px; }
+  .mobile-quote { font-size: 18px; }
+}
+
+/* Keep navigation visible above phone widths. */
+@media (min-width: 621px) {
+ .site-nav { grid-template-columns: auto 1fr auto; gap: 24px; }
+ .nav-links { display: flex; justify-content: center; gap: 24px; font-size: 18px; }
+ .nav-menu-button, .mobile-navigation { display: none; }
+}
+@media (min-width: 621px) and (max-width: 1050px) {
+ .site-nav { grid-template-columns: auto 1fr; gap: 20px; }
+ .site-nav > .button-small { display: none; }
+ .nav-links { justify-content: flex-end; gap: 20px; }
+ .brand > span:not(.brand-mark) { font-size: 18px; }
+}
+/* Prevent the long hero word from widening the phone layout. */
+.hero-copy { min-width: 0; }
+@media (max-width: 620px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  h1 { font-size: clamp(2.25rem, 11.8vw, 4rem); }
+  .site-nav .brand { min-width: 0; }
+  .site-nav .brand > span:not(.brand-mark) { font-size: clamp(14px, 4.6vw, 18px); }
+}
+@media (max-width: 620px) {
+  .service-area { grid-template-columns: minmax(0, 1fr); }
+  .area-copy, .neighborhood-list { min-width: 0; }
+  .neighborhood-list div { grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; }
+  .neighborhood-list strong { overflow-wrap: anywhere; }
+}
+@media (max-width: 620px) {
+  .area-copy h2 { font-size: clamp(2rem, 10vw, 3rem); }
+}
+@media (max-width: 620px) {
+  .results { grid-template-columns: minmax(0, 1fr); }
+  .results-copy { min-width: 0; }
+  .results-copy h2 { font-size: clamp(2.5rem, 12vw, 4rem); }
 }

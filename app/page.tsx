@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useState } from "react";
+import { SiteNavigation } from "./SiteNavigation";
 
 const services = [
   {
@@ -79,18 +80,7 @@ export default function Home() {
 
   return (
     <main>
-      <nav className="site-nav" aria-label="Main navigation">
-        <a className="brand" href="#top" aria-label="Riverside Window Cleaning home">
-          <span className="brand-mark" aria-hidden="true">R</span>
-          <span>Riverside<br />Window Cleaning</span>
-        </a>
-        <div className="nav-links">
-          <a href="#services">Services</a>
-          <a href="#results">Our work</a>
-          <a href="#service-area">Service area</a>
-        </div>
-        <a className="button button-small" href="#quote">Get a free quote <span>↗</span></a>
-      </nav>
+      <SiteNavigation />
 
       <section className="hero" id="top">
         <div className="hero-copy">

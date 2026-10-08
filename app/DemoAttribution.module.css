@@ -5,6 +5,6 @@
 .logo:focus-visible { outline: 2px solid #416a53; outline-offset: 4px; }
 .notice { min-width: 0; padding: 10px 16px; border-left: 2px solid #416a53; }
 .notice strong { display: block; margin: 0 0 5px; color: #416a53; font: 700 11px/1.4 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-.notice p { margin: 0; max-width: 900px; color: #102720; font: 400 13px/1.55 Arial, sans-serif; }
-@media (max-width: 600px) { .inner { width: calc(100% - 32px); padding: 13px 0; gap: 12px; align-items: flex-start; } .logo { flex-basis: 52px; min-height: 46px; margin-top: 3px; } .logo img { width: 52px; } .notice { padding: 3px 0 3px 12px; } .notice strong { font-size: 10px; letter-spacing: .08em; } .notice p { font-size: 12px; line-height: 1.5; } }
+.notice p { margin: 0; max-width: 900px; color: #102720; font: 400 15px/1.55 Arial, sans-serif; }
+@media (max-width: 600px) { .inner { width: calc(100% - 32px); padding: 13px 0; gap: 12px; align-items: flex-start; } .logo { flex-basis: 52px; min-height: 46px; margin-top: 3px; } .logo img { width: 52px; } .notice { padding: 3px 0 3px 12px; } .notice strong { font-size: 10px; letter-spacing: .08em; } .notice p { font-size: 14px; line-height: 1.5; } }
 
